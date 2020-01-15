@@ -26,7 +26,7 @@ class DatabaseService {
       return Brew(
           name: doc.data['name'] ?? '',
           strength: doc.data['strength'] ?? 0,
-          sugar: doc.data['sugar'] ?? '0');
+          sugar: doc.data['sugars'] ?? '0');
     }).toList();
   }
 

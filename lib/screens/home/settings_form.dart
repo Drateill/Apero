@@ -17,7 +17,7 @@ class _SettingsFormState extends State<SettingsForm> {
   //form Values
 
   String _currentName;
-  String _currentSugar;
+  String _currentSugars;
   int _currentStrength;
 
   @override
@@ -53,14 +53,14 @@ class _SettingsFormState extends State<SettingsForm> {
                   //dropdown
                   DropdownButtonFormField(
                     decoration: textInputDecoration,
-                    value: _currentSugar ?? userData.sugars,
+                    value: _currentSugars ?? userData.sugars,
                     items: sugars.map((sugar) {
                       return DropdownMenuItem(
                         value: sugar,
                         child: Text('$sugar sugars'),
                       );
                     }).toList(),
-                    onChanged: (val) => setState(() => _currentSugar = val),
+                    onChanged: (val) => setState(() => _currentSugars = val),
                   ),
                   //slider
                   Slider(
@@ -83,9 +83,10 @@ class _SettingsFormState extends State<SettingsForm> {
                       ),
                     ),
                     onPressed: () async {
-                      print(_currentName);
-                      print(_currentSugar);
-                      print(_currentStrength);
+                 if (_formKey.currentState.validate()){
+                   print(_currentSugars);
+                   await DatabaseService(uid: user.uid).updateUserData( _currentSugars ?? userData.sugars, _currentName ??  userData.name, _currentStrength ?? userData.strength);
+                 }
                     },
                   )
                 ],

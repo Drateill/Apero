@@ -12,42 +12,55 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void _showSettingsPanel() {
-      showModalBottomSheet(context: context, builder: (context) {
-        return Padding(
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 60),
-          child: SettingsForm(),
-        );
-      });
+      showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return Padding(
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 60),
+              child: SettingsForm(),
+            );
+          });
     }
 
     return StreamProvider<List<Brew>>.value(
       value: DatabaseService().brews,
       child: Scaffold(
-          backgroundColor: Colors.brown[100],
-          appBar: AppBar(
-            backgroundColor: Colors.brown[400],
-            title: Text('Brew Crew'),
-            elevation: 0,
-            actions: <Widget>[
-              FlatButton.icon(
-                onPressed: () async {
-                  await _auth.signOut();
-                },
-                label: Text('Logout'),
-                icon: Icon(
-                  Icons.person,
-                  color: Colors.white,
-                ),
+        backgroundColor: Colors.brown[100],
+        appBar: AppBar(
+          backgroundColor: Colors.brown[400],
+          title: Text('Brew Crew'),
+          elevation: 0,
+          actions: <Widget>[
+            FlatButton.icon(
+              onPressed: () async {
+                await _auth.signOut();
+              },
+              label: Text('Logout'),
+              icon: Icon(
+                Icons.person,
+                color: Colors.white,
               ),
-              FlatButton.icon(
-                icon: Icon(Icons.settings,
-                color: Colors.white,),
-                label: Text('Settings'),
-                onPressed: () => _showSettingsPanel(),
+            ),
+            FlatButton.icon(
+              icon: Icon(
+                Icons.settings,
+                color: Colors.white,
               ),
-            ],
+              label: Text('Settings'),
+              onPressed: () => _showSettingsPanel(),
+            ),
+          ],
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/coffee_bg.png'),
+              fit: BoxFit.cover,
+            ),
           ),
-          body: BrewList()),
+          child: BrewList(),
+        ),
+      ),
     );
   }
 }
