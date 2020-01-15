@@ -19,74 +19,111 @@ class _RegisterState extends State<Register> {
 
   String email = '';
   String password = '';
-  String error ='';
+  String confirmpassword = '';
+
+  String error = '';
   @override
   Widget build(BuildContext context) {
-    return loading ? Loading() : Scaffold(
-      backgroundColor: Colors.brown[100],
-      appBar: AppBar(
-          actions: <Widget>[
-            FlatButton.icon(
-              label: Text('SignIn'),
-              icon: Icon(Icons.person),
-              onPressed: () => widget.toggleView(),
-            )
-          ],
-          backgroundColor: Colors.brown[400],
-          elevation: 0,
-          title: Text('Sign up')),
-      body: Container(
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
-          child: Form(
-              key: _formKey,
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    decoration: textInputDecoration.copyWith(hintText: 'Email'),
-                    validator: (val) => val.isEmpty ? 'Enter an email' : null,
-                    onChanged: (val) {
-                      setState(() => email = val);
-                    },
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    decoration: textInputDecoration.copyWith(hintText: 'Password'),
-                    validator: (val) => val.length < 6 ? 'Enter a password 6+ chars long' : null,
-                    obscureText: true,
-                    onChanged: (val) {
-                      setState(() => password = val);
-                    },
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  RaisedButton(
-                    color: Colors.pink[400],
-                    child: Text(
-                      'Register',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () async {
-                      if (_formKey.currentState.validate()) {
-                        setState(() => loading = true);
-                        dynamic result = await _auth.registerWithEmailAndPassword(email, password);
-                        if (result == null){
-                          setState(() => error = 'please supply a valid email ');
-                          loading = false;
-                        }
-                      }
-                    },
-                  ),
-                  SizedBox(height: 20,),
-                  Text(error,
-                  style: TextStyle(color: Colors.red, fontSize: 14),)
+    return loading
+        ? Loading()
+        : Scaffold(
+            backgroundColor: Colors.brown[100],
+            appBar: AppBar(
+                actions: <Widget>[
+                  FlatButton.icon(
+                    label: Text('SignIn'),
+                    icon: Icon(Icons.person),
+                    onPressed: () => widget.toggleView(),
+                  )
                 ],
-              ))),
-    );
+                backgroundColor: Colors.brown[400],
+                elevation: 0,
+                title: Text('Sign up')),
+            body: Container(
+                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
+                child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(
+                          height: 20,
+                        ),
+                        TextFormField(
+                          decoration:
+                              textInputDecoration.copyWith(hintText: 'Email'),
+                          validator: (val) =>
+                              val.isEmpty ? 'Enter an email' : null,
+                          onChanged: (val) {
+                            setState(() => email = val);
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        TextFormField(
+                          decoration: textInputDecoration.copyWith(
+                              hintText: 'Enter a password 6+ chars long'),
+                          validator: (val) => val.length < 6
+                              ? 'Enter a password 6+ chars long'
+                              : null,
+                          obscureText: true,
+                          onChanged: (val) {
+                            setState(() => password = val);
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        TextFormField(
+                          decoration: textInputDecoration.copyWith(
+                              hintText: 'Confirm your password'),
+                          validator: (val) => val.length < 6
+                              ? 'Enter a password 6+ chars long'
+                              : null,
+                          obscureText: true,
+                          onChanged: (val) {
+                            setState(() => confirmpassword = val);
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        RaisedButton(
+                          color: Colors.pink[400],
+                          child: Text(
+                            'Register',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          onPressed: () async {
+                            if (password == confirmpassword) {
+                              if (_formKey.currentState.validate()) {
+                                setState(() => loading = true);
+                                dynamic result =
+                                    await _auth.registerWithEmailAndPassword(
+                                        email, password);
+                                if (result == null) {
+                                  setState(() =>
+                                      error = 'please supply a valid email ');
+                                  loading = false;
+                                }
+                              }
+                            } else {
+                              setState(() {
+                                 error ='Your password doesn\'t match';
+                              });
+                             
+                            }
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          error,
+                          style: TextStyle(color: Colors.red, fontSize: 14),
+                        )
+                      ],
+                    ))),
+          );
   }
 }
