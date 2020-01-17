@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:Apero/models/brews.dart';
 
 class BrewTile extends StatelessWidget {
-  final Brew brew;
-  BrewTile({this.brew});
+  final Apero apero;
+  BrewTile({this.apero});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,11 +13,11 @@ class BrewTile extends StatelessWidget {
         child: ListTile(
           leading: CircleAvatar(
             radius: 25,
-            backgroundColor: Colors.brown[brew.strength],
+            backgroundColor: Colors.brown[100],
             backgroundImage: AssetImage('assets/coffee_icon.png'),
           ),
-          title: Text(brew.name),
-          subtitle: Text('Takes ${brew.sugar} sugar(s)'),
+          title: Text(apero.name),
+          subtitle: Text('Takes ${apero.quantite} sugar(s)'),
         ),
       ),
     );

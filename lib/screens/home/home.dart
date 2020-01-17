@@ -22,8 +22,8 @@ class Home extends StatelessWidget {
           });
     }
 
-    return StreamProvider<List<Brew>>.value(
-      value: DatabaseService().brews,
+    return StreamProvider<List<Apero>>.value(
+      value: DatabaseService().apero,
       child: Scaffold(
         backgroundColor: Colors.brown[100],
         appBar: AppBar(

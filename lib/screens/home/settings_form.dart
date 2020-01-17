@@ -40,7 +40,7 @@ class _SettingsFormState extends State<SettingsForm> {
               key: _formKey,
               child: Column(
                 children: <Widget>[
-                  Text('Update your brew settings.',
+                  Text('Update your Apero settings.',
                       style: TextStyle(
                         fontSize: 18,
                       )),

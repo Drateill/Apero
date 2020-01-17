@@ -59,12 +59,13 @@ class DatabaseService {
        'name' : aperoData['name'],
        'Quantité' : aperoData['quantite']
      });
+    
 
   }
-    Future getData() async {
 
-     return await Firestore.instance.collection('apero').getDocuments();
+  Future getData() async {
 
+    return await Firestore.instance.collection('apero').getDocuments();
   }
 
 
