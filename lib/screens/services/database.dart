@@ -1,5 +1,5 @@
-import 'package:brew_crew/models/brews.dart';
-import 'package:brew_crew/models/user.dart';
+import 'package:Apero/models/brews.dart';
+import 'package:Apero/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DatabaseService {
@@ -10,6 +10,8 @@ class DatabaseService {
 
   final CollectionReference brewCollection =
       Firestore.instance.collection('brews');
+  final CollectionReference aperoCollection =
+      Firestore.instance.collection('apero');
 
   Future updateUserData(String sugars, String name, int strength) async {
     return await brewCollection.document(uid).setData({
@@ -30,10 +32,41 @@ class DatabaseService {
     }).toList();
   }
 
+    // Apero list from snapshot
+
+  List<Apero> _aperoListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return Apero(
+          name: doc.data['name'] ?? '',
+          quantite: doc.data['quantite'] ?? 0,);
+    }).toList();
+  }
+
   // get brews stream
   Stream<List<Brew>> get brews {
     return brewCollection.snapshots().map(_brewListFromSnapshot);
   }
+  // get apero stream
+  Stream<List<Apero>> get apero {
+    return aperoCollection.snapshots().map(_aperoListFromSnapshot);
+  }
+
+  //add apero
+
+  Future<void> addData(aperoData) async {
+
+     return await Firestore.instance.collection('apero').add({
+       'name' : aperoData['name'],
+       'Quantité' : aperoData['quantite']
+     });
+
+  }
+    Future getData() async {
+
+     return await Firestore.instance.collection('apero').getDocuments();
+
+  }
+
 
   // user data from snapshot
 
@@ -48,7 +81,6 @@ class DatabaseService {
   // get user doc stream
 
   Stream<UserData> get userData {
-    return brewCollection.document(uid).snapshots()
-    .map(_userDataFromSnapshot);
+    return brewCollection.document(uid).snapshots().map(_userDataFromSnapshot);
   }
 }

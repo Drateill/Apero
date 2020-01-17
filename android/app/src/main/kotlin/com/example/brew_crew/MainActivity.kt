@@ -1,4 +1,4 @@
-package com.example.brew_crew
+package com.example.Apero
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

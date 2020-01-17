@@ -1,8 +1,8 @@
-import 'package:brew_crew/models/user.dart';
-import 'package:brew_crew/screens/services/database.dart';
-import 'package:brew_crew/screens/services/shared/loading.dart';
+import 'package:Apero/models/user.dart';
+import 'package:Apero/screens/services/database.dart';
+import 'package:Apero/screens/services/shared/loading.dart';
 import 'package:flutter/material.dart';
-import 'package:brew_crew/screens/services/shared/constants.dart';
+import 'package:Apero/screens/services/shared/constants.dart';
 import 'package:provider/provider.dart';
 
 class SettingsForm extends StatefulWidget {
@@ -19,6 +19,12 @@ class _SettingsFormState extends State<SettingsForm> {
   String _currentName;
   String _currentSugars;
   int _currentStrength;
+
+
+  String _aperoName;
+  int _aperoQuantite=1;
+
+  DatabaseService _addApero = new DatabaseService();
 
   @override
   Widget build(BuildContext context) {
@@ -42,50 +48,54 @@ class _SettingsFormState extends State<SettingsForm> {
                     height: 20,
                   ),
                   TextFormField(
-                    initialValue: userData.name,
                     decoration: textInputDecoration,
                     validator: (val) => val.isEmpty ? 'Enter your name' : null,
-                    onChanged: (val) => setState(() => _currentName = val),
+                    onChanged: (val) => setState(() => _aperoName = val),
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   //dropdown
-                  DropdownButtonFormField(
-                    decoration: textInputDecoration,
-                    value: _currentSugars ?? userData.sugars,
-                    items: sugars.map((sugar) {
-                      return DropdownMenuItem(
-                        value: sugar,
-                        child: Text('$sugar sugars'),
-                      );
-                    }).toList(),
-                    onChanged: (val) => setState(() => _currentSugars = val),
-                  ),
+                  // DropdownButtonFormField(
+                  //   decoration: textInputDecoration,
+                  //   value: _currentSugars ?? userData.sugars,
+                  //   items: sugars.map((sugar) {
+                  //     return DropdownMenuItem(
+                  //       value: sugar,
+                  //       child: Text('$sugar sugars'),
+                  //     );
+                  //   }).toList(),
+                  //   onChanged: (val) => setState(() => _currentSugars = val),
+                  // ),
                   //slider
                   Slider(
-                    value: (_currentStrength ?? userData.strength).toDouble(),
-                    activeColor: Colors.brown[_currentStrength ?? userData.strength],
-                    inactiveColor: Colors.brown[_currentStrength ?? userData.strength],
-                    min: 100,
-                    max: 900,
-                    divisions: 8,
+                    value: (_aperoQuantite.toDouble() ?? 1),
+                    activeColor: Colors.brown[400],
+                    inactiveColor: Colors.brown[400],
+                    min: 1,
+                    max: 10,
+                    divisions: 10,
                     onChanged: (val) =>
-                        setState(() => _currentStrength = val.round()),
+                        setState(() => _aperoQuantite = val.round()),
                   ),
                   //Submit change
                   RaisedButton(
                     color: Colors.pink[400],
                     child: Text(
-                      'update',
+                      'Add',
                       style: TextStyle(
                         color: Colors.white,
                       ),
                     ),
                     onPressed: () async {
                  if (_formKey.currentState.validate()){
-                   print(_currentSugars);
-                   await DatabaseService(uid: user.uid).updateUserData( _currentSugars ?? userData.sugars, _currentName ??  userData.name, _currentStrength ?? userData.strength);
+                   Map aperoData = {
+                     'name': _aperoName,
+                     'quantite' : _aperoQuantite
+                   };
+                   print(aperoData);
+                  _addApero.addData(aperoData);
+                  // await DatabaseService().;
                  }
                     },
                   )

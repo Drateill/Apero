@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "285349697548",
-    "firebase_url": "https://brew-crew-e4eb1.firebaseio.com",
-    "project_id": "brew-crew-e4eb1",
-    "storage_bucket": "brew-crew-e4eb1.appspot.com"
+    "project_number": "583960012757",
+    "firebase_url": "https://apero-a0b62.firebaseio.com",
+    "project_id": "apero-a0b62",
+    "storage_bucket": "apero-a0b62.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:285349697548:android:9163c3e65c60e87667f629",
+        "mobilesdk_app_id": "1:583960012757:android:6303984f00fbc436daff5c",
         "android_client_info": {
-          "package_name": "com.drateil.brew_crew"
+          "package_name": "com.drateil.Apero"
         }
       },
       "oauth_client": [
         {
-          "client_id": "285349697548-its93i9mubs4q07fumjcvttpuoj76aj0.apps.googleusercontent.com",
+          "client_id": "583960012757-3bfo8n786bauir0s833snr8ft0uqdu64.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDOTs8ETLXmxYQMPIuGICA_wgkpb1rVLeQ"
+          "current_key": "AIzaSyAwsoU6yYVEJFuI6XHu-esVgo_3T83xTgA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "285349697548-its93i9mubs4q07fumjcvttpuoj76aj0.apps.googleusercontent.com",
+              "client_id": "583960012757-3bfo8n786bauir0s833snr8ft0uqdu64.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

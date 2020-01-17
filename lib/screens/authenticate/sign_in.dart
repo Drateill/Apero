@@ -1,6 +1,6 @@
-import 'package:brew_crew/screens/services/auth.dart';
-import 'package:brew_crew/screens/services/shared/constants.dart';
-import 'package:brew_crew/screens/services/shared/loading.dart';
+import 'package:Apero/screens/services/auth.dart';
+import 'package:Apero/screens/services/shared/constants.dart';
+import 'package:Apero/screens/services/shared/loading.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {

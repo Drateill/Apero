@@ -1,8 +1,8 @@
-import 'package:brew_crew/models/brews.dart';
-import 'package:brew_crew/screens/home/settings_form.dart';
-import 'package:brew_crew/screens/services/auth.dart';
+import 'package:Apero/models/brews.dart';
+import 'package:Apero/screens/home/settings_form.dart';
+import 'package:Apero/screens/services/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:brew_crew/screens/services/database.dart';
+import 'package:Apero/screens/services/database.dart';
 import 'package:provider/provider.dart';
 import 'brewlist.dart';
 
@@ -28,7 +28,7 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.brown[100],
         appBar: AppBar(
           backgroundColor: Colors.brown[400],
-          title: Text('Brew Crew'),
+          title: Text('Apero'),
           elevation: 0,
           actions: <Widget>[
             FlatButton.icon(
@@ -43,10 +43,10 @@ class Home extends StatelessWidget {
             ),
             FlatButton.icon(
               icon: Icon(
-                Icons.settings,
+                Icons.add,
                 color: Colors.white,
               ),
-              label: Text('Settings'),
+              label: Text('Ajouter'),
               onPressed: () => _showSettingsPanel(),
             ),
           ],

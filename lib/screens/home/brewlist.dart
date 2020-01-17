@@ -1,5 +1,5 @@
-import 'package:brew_crew/models/brews.dart';
-import 'package:brew_crew/screens/home/BrewTile.dart';
+import 'package:Apero/models/brews.dart';
+import 'package:Apero/screens/home/BrewTile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
