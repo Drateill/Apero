@@ -32,13 +32,14 @@ class DatabaseService {
     }).toList();
   }
 
-    // Apero list from snapshot
+  // Apero list from snapshot
 
   List<Apero> _aperoListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return Apero(
-          name: doc.data['name'] ?? '',
-          quantite: doc.data['quantite'] ?? 0,);
+        name: doc.data['name'] ?? '',
+        description: doc.data['description'] ?? 0,
+      );
     }).toList();
   }
 
@@ -46,6 +47,7 @@ class DatabaseService {
   Stream<List<Brew>> get brews {
     return brewCollection.snapshots().map(_brewListFromSnapshot);
   }
+
   // get apero stream
   Stream<List<Apero>> get apero {
     return aperoCollection.snapshots().map(_aperoListFromSnapshot);
@@ -53,21 +55,19 @@ class DatabaseService {
 
   //add apero
 
+  // Future<void> addData(aperoData) async {
+  //   return await Firestore.instance.collection('apero').add(
+  //       {'name': aperoData['name'], 'description': aperoData['description'],});
+  // }
   Future<void> addData(aperoData) async {
-
-     return await Firestore.instance.collection('apero').add({
-       'name' : aperoData['name'],
-       'Quantité' : aperoData['quantite']
-     });
-    
-
+    return await aperoCollection.document().setData({
+      'name': aperoData['name'],
+      'description' : aperoData['description']
+    });
   }
-
   Future getData() async {
-
-    return await Firestore.instance.collection('apero').getDocuments();
+    return await Firestore.instance.collection('apero').snapshots();
   }
-
 
   // user data from snapshot
 
@@ -77,6 +77,16 @@ class DatabaseService {
         sugars: snapshot.data['sugars'],
         strength: snapshot.data['strength'],
         uid: uid);
+  }
+
+  deletData(docId) {
+    Firestore.instance
+        .collection('apero')
+        .document(docId)
+        .delete()
+        .catchError((e) {
+      print(e);
+    });
   }
 
   // get user doc stream

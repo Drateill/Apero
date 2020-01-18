@@ -12,8 +12,8 @@ Brew({this.name, this.sugar, this.strength});
 class Apero {
 
 final String name;
-final int quantite;
+final String description;
 
-Apero({this.quantite, this.name,});
+Apero({this.description, this.name});
 
 }

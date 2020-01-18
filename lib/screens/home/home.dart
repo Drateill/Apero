@@ -9,6 +9,7 @@ import 'brewlist.dart';
 class Home extends StatelessWidget {
   final AuthService _auth = AuthService();
 
+
   @override
   Widget build(BuildContext context) {
     void _showSettingsPanel() {
@@ -54,7 +55,7 @@ class Home extends StatelessWidget {
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/coffee_bg.png'),
+              image: AssetImage('assets/bg.jpg'),
               fit: BoxFit.cover,
             ),
           ),
