@@ -1,10 +1,8 @@
-import 'package:Apero/screens/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:Apero/models/brews.dart';
 
 class BrewTile extends StatelessWidget {
   final Apero apero;
-  DatabaseService _delete= new DatabaseService();
   BrewTile({this.apero});
   @override
   Widget build(BuildContext context) {
@@ -20,15 +18,6 @@ class BrewTile extends StatelessWidget {
           ),
           title: Text(apero.name),
           subtitle: Text(apero.description),
-//           trailing: FlatButton.icon(
-//             icon: Icon(Icons.delete),
-//             label: Text('Delete'),
-//             onPressed: (){
-// _delete.deletData(apero.docId);
-
-// print(apero.name);
-//             },
-//           ),
         ),
       ),
     );

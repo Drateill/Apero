@@ -66,7 +66,7 @@ class DatabaseService {
     });
   }
   Future getData() async {
-    return await Firestore.instance.collection('apero').snapshots();
+    return Firestore.instance.collection('apero').snapshots();
   }
 
   // user data from snapshot
