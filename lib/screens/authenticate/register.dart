@@ -20,6 +20,7 @@ class _RegisterState extends State<Register> {
   String email = '';
   String password = '';
   String confirmpassword = '';
+  String pseudo='';
 
   String error = '';
   @override
@@ -55,6 +56,16 @@ class _RegisterState extends State<Register> {
                               val.isEmpty ? 'Enter an email' : null,
                           onChanged: (val) {
                             setState(() => email = val);
+                          },
+                        ),
+                        SizedBox(height: 20,),
+                        TextFormField(
+                          decoration:
+                              textInputDecoration.copyWith(hintText: 'Pseudo'),
+                          validator: (val) =>
+                              val.isEmpty ? 'Choisis un pseudo' : null,
+                          onChanged: (val) {
+                            setState(() => pseudo = val);
                           },
                         ),
                         SizedBox(
@@ -100,7 +111,7 @@ class _RegisterState extends State<Register> {
                                 setState(() => loading = true);
                                 dynamic result =
                                     await _auth.registerWithEmailAndPassword(
-                                        email, password);
+                                        email, password,pseudo );
                                 if (result == null) {
                                   setState(() =>
                                       error = 'please supply a valid email ');

@@ -1,10 +1,9 @@
-class Brew {
+class Users {
 
 final String name;
-final String sugar;
-final int strength;
+final String id;
 
-Brew({this.name, this.sugar, this.strength});
+Users({this.name,this.id});
 
 }
 
@@ -13,7 +12,8 @@ class Apero {
 
 final String name;
 final String description;
+final String byWho;
 
-Apero({this.description, this.name});
+Apero({this.description, this.name, this.byWho});
 
 }

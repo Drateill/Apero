@@ -17,7 +17,7 @@ class BrewTile extends StatelessWidget {
             backgroundImage: AssetImage('assets/beer.png'),
           ),
           title: Text(apero.name),
-          subtitle: Text(apero.description),
+          subtitle: Text('qsdqsd'),
         ),
       ),
     );
